@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Beyond Recall: a fine-grained multimodal benchmark for long-term agent memory across images, videos, and documents. Explore the paper, 11 tasks, evaluation code, and dataset.">
+  <meta name="theme-color" content="#fcfbf8">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Beyond Recall — Multimodal Agent Memory">
+  <meta property="og:description" content="11 memory tasks. 1,163 long-term trajectories. Images, videos, and documents.">
+  <meta property="og:url" content="https://beyond-recall.github.io/">
+  <meta property="og:image" content="https://beyond-recall.github.io/assets/beyond_recall_banner.png">
+  <link rel="canonical" href="https://beyond-recall.github.io/">
+  <link rel="stylesheet" href="styles.css">
+  <title>Beyond Recall | Multimodal Agent Memory Benchmark</title>
+  <script src="site.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
+  <nav class="nav container" aria-label="Main navigation">
+    <a class="wordmark" href="#main">Beyond<span>Recall</span><span class="brand-dot" aria-hidden="true">.</span></a>
+    <div class="nav-links"><a href="#overview">Overview</a><a href="#tasks">Tasks</a><a href="#resources">Resources</a></div>
+    <a class="nav-code" href="https://github.com/Moritze-Chenyu/BeyondRecall">Code <span aria-hidden="true">↗</span></a>
+  </nav>
+</header>
+<main id="main">
+  <section class="hero container" aria-labelledby="title">
+    <p class="eyebrow"><span class="live-dot" aria-hidden="true"></span> A benchmark for long-term agent memory</p>
+    <h1 id="title">Beyond <span>Recall</span></h1>
+    <p class="subtitle">A Fine-Grained Multimodal Benchmark for<br class="desktop-break"> Agent Memory across Images, Videos, and Documents</p>
+    <p class="authors"><a href="mailto:chenyuw494@gmail.com">Chenyu Wang</a><span>Junkai Chen</span><span>Zhongkai Xue</span><span>Zhetao Guo</span><span>Shu Wu</span></p>
+    <p class="affiliation">Institute of Automation, Chinese Academy of Sciences</p>
+    <div class="hero-actions">
+      <a class="button primary" href="downloads/BeyondRecall.pdf">Read the paper <span aria-hidden="true">↗</span></a>
+      <a class="button" href="https://github.com/Moritze-Chenyu/BeyondRecall">Evaluation code <span aria-hidden="true">↗</span></a>
+      <a class="button" href="https://huggingface.co/datasets/Moritze-Chenyu/BeyondRecall">Dataset <span aria-hidden="true">↗</span></a>
+    </div>
+    <p class="hero-description">Remember what was seen. Reason across time.<br>Manage what changes.</p>
+    <div class="stats" aria-label="Benchmark statistics">
+      <div><strong>11</strong><span>Fine-grained tasks</span></div>
+      <div><strong>1,163</strong><span>Conversation trajectories</span></div>
+      <div><strong>1,269</strong><span>Question–answer pairs</span></div>
+      <div><strong>23,775</strong><span>Timestamped sessions</span></div>
+    </div>
+  </section>
+
+  <section class="section container" id="overview" aria-labelledby="overview-title">
+    <div class="section-heading"><span class="section-number">01 / OVERVIEW</span><h2 id="overview-title">Memory beyond a single moment.</h2></div>
+    <div class="overview-grid">
+      <p class="lead">The evidence is in the past.<br>The question comes later.</p>
+      <div class="prose"><p>Beyond Recall evaluates whether an agent can retain and use multimodal information distributed across long, multi-session conversations. Images, videos, and documents carry evidence that must be retrieved, combined, and updated over time.</p><p>The benchmark separates these challenges into <strong>retrieval</strong>, <strong>reasoning</strong>, and <strong>management</strong>, with 11 tasks that expose specific memory abilities.</p></div>
+    </div>
+    <figure class="example-figure">
+      <a href="assets/task_examples.png" aria-label="View the full-resolution task examples"><img src="assets/task_examples.png" width="2551" height="2154" alt="Paper figure showing evidence fragments and questions for the 11 Beyond Recall memory tasks." loading="lazy"></a>
+      <figcaption><span>Task examples from the paper.</span><a href="assets/task_examples.png">View full resolution <span aria-hidden="true">↗</span></a></figcaption>
+    </figure>
+  </section>
+
+  <section class="abstract-section" aria-labelledby="abstract-title">
+    <div class="container abstract-inner"><span class="section-number">THE PAPER</span><h2 id="abstract-title">Abstract</h2>
+      <p>Existing agent-memory benchmarks test factual recall from text, while multimodal benchmarks place visual evidence in a single turn or short context. They rarely distribute multimodal evidence across sessions occurring at different times, and their broad task categories make it difficult to evaluate specific memory abilities. We introduce <em>Beyond Recall</em>, a fine-grained benchmark for long-term agent memory containing 1,865 unique images, 85 multi-page PDF documents, and 314 videos. We organize the benchmark into 11 tasks across three dimensions: retrieval, reasoning, and management. Its questions require task-relevant multimodal evidence, reducing the chance of answering them from text alone. We construct the benchmark through a human-in-the-loop pipeline. Human experts create evidence, distractors, questions, and answers from real-world multimodal materials, while language models summarize topics and adapt context from open-source datasets into multi-session conversations. Human reviewers then check the resulting examples for evidence grounding, consistency, ambiguity, and answer leakage. <em>Beyond Recall</em> contains 1,163 long-term conversation trajectories, 1,269 question–answer pairs, and 23,775 timestamped sessions. We evaluate agent-memory frameworks, retrieval-augmented pipelines, and full-context baselines under a unified protocol. Performance varies greatly across memory abilities, and no single method performs best on all tasks. Across the evaluated retrieval and memory systems, complete evidence access averages 70.0%, yet average answer accuracy on these cases is only 40.7%. Together with our error analysis, this gap shows that current systems still struggle to use multimodal evidence effectively and combine information across sessions.</p>
+      <p class="release-note">The abstract reports the paper's construction and experiments. The downloadable release uses evidence-preserving cropped PDFs; its dataset card documents current packaged media counts and page selection. Earlier full-PDF results are not directly comparable to this revision.</p>
+    </div>
+  </section>
+
+  <section class="section container" id="tasks" aria-labelledby="tasks-title">
+    <div class="section-heading"><span class="section-number">02 / THE TASKS</span><h2 id="tasks-title">Three dimensions. Eleven abilities.</h2><p>Explore the memory operations required to answer each question.</p></div>
+    <div class="task-filters" role="group" aria-label="Filter tasks by dimension">
+      <button class="filter active" data-filter="all" aria-pressed="true">All tasks <span>11</span></button>
+      <button class="filter" data-filter="retrieval" aria-pressed="false">Retrieval <span>4</span></button>
+      <button class="filter" data-filter="reasoning" aria-pressed="false">Reasoning <span>3</span></button>
+      <button class="filter" data-filter="management" aria-pressed="false">Management <span>4</span></button>
+    </div>
+    <div class="task-grid">
+      <article class="task retrieval" data-dimension="retrieval"><span class="task-kind">Retrieval / 01</span><h3>Property and State Retrieval</h3><p>Recover a specific attribute or state from historical media.</p></article>
+      <article class="task retrieval" data-dimension="retrieval"><span class="task-kind">Retrieval / 02</span><h3>High-Density Information Extraction</h3><p>Extract detailed fields and values from information-rich evidence.</p></article>
+      <article class="task retrieval" data-dimension="retrieval"><span class="task-kind">Retrieval / 03</span><h3>Cross-Modal Semantic Matching</h3><p>Match a textual description to the relevant media or entity.</p></article>
+      <article class="task retrieval" data-dimension="retrieval"><span class="task-kind">Retrieval / 04</span><h3>Temporal Anchoring</h3><p>Locate an event through its time or position in a sequence.</p></article>
+      <article class="task reasoning" data-dimension="reasoning"><span class="task-kind">Reasoning / 01</span><h3>Temporal Logic and State Evolution</h3><p>Combine observations to understand how a state changes over time.</p></article>
+      <article class="task reasoning" data-dimension="reasoning"><span class="task-kind">Reasoning / 02</span><h3>Causal and Intent Inference</h3><p>Infer reasons and intentions from actions, context, and outcomes.</p></article>
+      <article class="task reasoning" data-dimension="reasoning"><span class="task-kind">Reasoning / 03</span><h3>Cross-Modal Relational Reasoning</h3><p>Connect entities and evidence across modalities and sessions.</p></article>
+      <article class="task management" data-dimension="management"><span class="task-kind">Management / 01</span><h3>Long-Term Semantic Summary</h3><p>Summarize stable patterns and preferences from repeated evidence.</p></article>
+      <article class="task management" data-dimension="management"><span class="task-kind">Management / 02</span><h3>Conflict Detection</h3><p>Recognize contradictions between observations or sources.</p></article>
+      <article class="task management" data-dimension="management"><span class="task-kind">Management / 03</span><h3>Refusal to Answer</h3><p>Identify when the available history does not support an answer.</p></article>
+      <article class="task management" data-dimension="management"><span class="task-kind">Management / 04</span><h3>Memory Update</h3><p>Use new evidence to revise an earlier state while retaining its timeline.</p></article>
+    </div>
+    <p id="filter-status" class="sr-only" role="status" aria-live="polite">Showing all 11 tasks.</p>
+  </section>
+
+  <section class="section container construction" aria-labelledby="construction-title">
+    <div class="section-heading"><span class="section-number">03 / CONSTRUCTION</span><h2 id="construction-title">Real media. Human-grounded evidence.</h2><p>Experts reconstruct the final memory fragments, questions, and answers from source materials. Language models assist storyline exploration and carrier-context adaptation.</p></div>
+    <a class="construction-image" href="assets/construction.png" aria-label="View the full-resolution data construction figure"><img src="assets/construction.png" alt="Beyond Recall construction pipeline: expert seed tasks, storyline abstraction, human reconstruction, context injection, and review." loading="lazy"></a>
+    <div class="construction-notes"><p><strong>Reconstruct.</strong> Generated drafts are discarded after storyline abstraction. Experts create fine-grained tasks grounded in real media.</p><p><strong>Review.</strong> Automatic checks and human review examine evidence grounding, temporal consistency, ambiguity, and answer leakage.</p></div>
+  </section>
+
+  <section class="resource-section" id="resources" aria-labelledby="resources-title">
+    <div class="container">
+      <div class="section-heading"><span class="section-number">04 / GET STARTED</span><h2 id="resources-title">Explore. Evaluate. Build on it.</h2></div>
+      <div class="resources">
+        <a href="downloads/BeyondRecall.pdf"><span class="resource-index">01</span><div><h3>Read the paper</h3><p>The public preprint, task design, experiments, and analysis.</p></div><span class="resource-arrow" aria-hidden="true">↗</span></a>
+        <a href="https://github.com/Moritze-Chenyu/BeyondRecall"><span class="resource-index">02</span><div><h3>Run the evaluation</h3><p>Text data, evaluation code, framework setup, and usage guides.</p></div><span class="resource-arrow" aria-hidden="true">↗</span></a>
+        <a href="https://huggingface.co/datasets/Moritze-Chenyu/BeyondRecall"><span class="resource-index">03</span><div><h3>Download the dataset</h3><p>Complete task records and packaged images, PDFs, and videos.</p></div><span class="resource-arrow" aria-hidden="true">↗</span></a>
+      </div>
+      <p class="download-note">Use a pinned dataset revision for reproducible evaluation. The dataset card explains identifiers, timestamp visibility, media paths, source attribution, and license scope.</p>
+    </div>
+  </section>
+
+  <section class="section container citation-section" aria-labelledby="citation-title">
+    <div class="citation-heading"><div><span class="section-number">CITATION</span><h2 id="citation-title">Cite Beyond Recall</h2></div><button class="copy-button" id="copy-citation" type="button">Copy BibTeX</button></div>
+    <pre><code id="citation">@misc{wang2026beyondrecall,
+  title = {Beyond Recall: A Fine-Grained Multimodal Benchmark for
+           Agent Memory across Images, Videos, and Documents},
+  author = {Wang, Chenyu and Chen, Junkai and Xue, Zhongkai
+            and Guo, Zhetao and Wu, Shu},
+  year = {2026},
+  howpublished = {\url{https://beyond-recall.github.io/}},
+  note = {Preprint}
+}</code></pre>
+    <p id="copy-status" role="status" aria-live="polite"></p>
+  </section>
+</main>
+<footer class="container footer"><a class="wordmark" href="#main">Beyond<span>Recall</span><span class="brand-dot" aria-hidden="true">.</span></a><p>Institute of Automation, Chinese Academy of Sciences</p><a href="mailto:chenyuw494@gmail.com">Contact <span aria-hidden="true">↗</span></a></footer>
+</body>
+</html>
